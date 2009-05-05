@@ -1,2 +1,3 @@
 lanparty/secret.txt
 *.pyc
+lanparty/lanparty.sqlite
