@@ -94,4 +94,5 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'lanparty.tournament',
+    'lanparty.users',
 )
