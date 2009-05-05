@@ -13,10 +13,13 @@ def signup(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             User.objects.create_user(username, email, password)
+            return render_to_response('users/signup-completed.html', {
+                'form': form,
+            })
     else:
         form = SignupForm()
 
-    return render_to_response('players/signup.html', {
+    return render_to_response('users/signup.html', {
         'form': form,
     })
 
