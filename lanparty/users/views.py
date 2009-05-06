@@ -32,18 +32,16 @@ def signin(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = form.cleaned_data['user']
+            next = form.cleaned_data['next'] or reverse('server-list')
             login(request, user)
-            return HttpResponse("""
-                Signin successful!
-            """)
+            return HttpResponseRedirect(next)
     else:
-        form = SigninForm()
+        form = SigninForm(initial=request.GET)
 
     return render_to_response('users/signin.html', {
         'form': form,
         'user': request.user,
     })
-
 
 def signout(request):
     logout(request)

@@ -3,9 +3,11 @@ from django.http import HttpResponseRedirect, HttpResponse, HttpResponseNotFound
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from models import *
 
+@login_required
 def edit_server(request, id=None):
     if request.method == "POST":
         if id is not None:

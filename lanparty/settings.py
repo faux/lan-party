@@ -81,6 +81,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
+LOGIN_URL = '/users/signin/'
+LOGOUT_URL = '/users/signout/'
+
 ROOT_URLCONF = 'lanparty.urls'
 
 TEMPLATE_DIRS = (

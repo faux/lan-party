@@ -6,20 +6,22 @@ from django.contrib.auth import authenticate
 class SigninForm(forms.Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=100)
+    next = forms.CharField(required=False, widget=forms.HiddenInput())
     
     def clean(self):
-        username = self.cleaned_data['username']
-        password = self.cleaned_data['password']
+        if self.is_valid():
+            username = self.cleaned_data['username']
+            password = self.cleaned_data['password']
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if not user.is_active:
-                raise forms.ValidationError("The account is disabled")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if not user.is_active:
+                    raise forms.ValidationError("The account is disabled")
+                else:
+                    self.cleaned_data['user'] = user
             else:
-                self.cleaned_data['user'] = user
-        else:
-            raise forms.ValidationError("The username or password is incorrect")
-        return self.cleaned_data
+                raise forms.ValidationError("The username or password is incorrect")
+            return self.cleaned_data
 
 class SignupForm(forms.Form):
     username = forms.CharField(max_length=100)
@@ -27,11 +29,11 @@ class SignupForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=100)
 
     def clean_username(self):
-        username = self.cleaned_data['username']
-        try:
-            User.objects.get(username__exact=username)
-            raise forms.ValidationError("The username has already been taken")
-        except User.DoesNotExist:
-            pass
-        return username
-
+        if self.is_valid():
+            username = self.cleaned_data['username']
+            try:
+                User.objects.get(username__exact=username)
+                raise forms.ValidationError("The username has already been taken")
+            except User.DoesNotExist:
+                pass
+            return username
