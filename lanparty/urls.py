@@ -1,8 +1,10 @@
 from django.conf.urls.defaults import *
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from lanparty.servers.models import *
+
 admin.autodiscover()
+
+admin.site.register(Server, ServerAdmin)
 
 urlpatterns = patterns('',
     # Example:
