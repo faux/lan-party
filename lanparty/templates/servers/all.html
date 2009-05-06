@@ -5,7 +5,7 @@
         {{ server.name }} - {{ server.game_type }}
         </a>
         <ul><li>
-            {% if server.use_steam %}<a href="steam://{{ server.ip_address }}:{{ server.port }}">{% endif %}
+            {% if server.use_steam %}<a href="steam://connect/{{ server.ip_address }}:{{ server.port }}">{% endif %}
             {{ server.ip_address }}:{{ server.port }}
             {% if server.use_steam %}</a>{% endif %}
         </li></ul>
