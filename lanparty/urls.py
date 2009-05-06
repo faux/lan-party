@@ -7,6 +7,7 @@ admin.autodiscover()
 
 admin.site.register(Server, ServerAdmin)
 admin.site.register(Tournament, TournamentAdmin)
+admin.site.register(Team, TeamAdmin)
 
 urlpatterns = patterns('',
     # Example:
