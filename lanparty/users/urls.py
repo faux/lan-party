@@ -4,8 +4,9 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('lanparty.users.views',
     # Example:
     # (r'^lanparty/', include('lanparty.foo.urls')),
-    url(r'^signin/', 'signin'),
+    url(r'^signin/', 'signin', name="signin"),
     url(r'^signup/', 'signup', name="signup"),
+    url(r'^signout/', 'signout', name="signout"),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
