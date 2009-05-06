@@ -15,4 +15,5 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
     url(r'^users/', include('lanparty.users.urls')),
+    url(r'^servers/', include('lanparty.servers.urls')),
 )

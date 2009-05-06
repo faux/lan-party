@@ -1,0 +1,13 @@
+<a href="{% url new-server %}">Add new server</a>
+<ul>{% for server in servers %}
+    <li>
+        <a href="{% url edit-server server.pk %}">
+        {{ server.name }} - {{ server.game_type }}
+        </a>
+        <ul><li>
+            {% if server.use_steam %}<a href="steam://{{ server.ip_address }}:{{ server.port }}">{% endif %}
+            {{ server.ip_address }}:{{ server.port }}
+            {% if server.use_steam %}</a>{% endif %}
+        </li></ul>
+    </li>
+{% endfor %}</ul>

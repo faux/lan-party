@@ -1,0 +1,7 @@
+<a href="{% url server-list %}">back to server list</a>
+<form action="{% if form.instance.pk %}{% url edit-server form.instance.pk %}{% else %}{% url new-server %}{% endif %}" method="POST">
+    <h3>{% if form.instance.pk %}Edit{% else %}New{% endif %} server</h3>
+    {{ form.as_p }}
+    <input type="submit" value="Save server"/>
+    <input type="submit" name="delete" value="Delete Server"/>
+</form>
