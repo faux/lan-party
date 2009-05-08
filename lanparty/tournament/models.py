@@ -1,6 +1,5 @@
 from django.db import models
 from django import forms
-from django.contrib import admin
 from django.contrib.auth.models import User
 from lanparty.servers.models import Server
 
@@ -91,24 +90,4 @@ class TeamForm(forms.ModelForm):
 
     class Meta:
         model = Team
-
-class TournamentServerInline(admin.TabularInline):
-    model = TournamentServer
-    extra = 10
-
-class TeamMembershipInline(admin.TabularInline):
-    model = TeamMembership
-    extra = 5
-
-class TournamentTeamInline(admin.TabularInline):
-    model = Team
-    extra = 5
-
-class TeamAdmin(admin.ModelAdmin):
-    inlines = (TeamMembershipInline,)
-    form = TeamForm
-
-class TournamentAdmin(admin.ModelAdmin):
-    inlines = (TournamentServerInline,TournamentTeamInline)
-    form = TournamentForm
 

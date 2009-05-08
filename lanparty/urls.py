@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from lanparty.servers.models import *
+from lanparty.servers.admin import *
 from lanparty.tournament.models import *
+from lanparty.tournament.admin import *
 
 admin.autodiscover()
 

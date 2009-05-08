@@ -1,6 +1,5 @@
 from django.db import models
 from django import forms
-from django.contrib import admin
 import re
 
 class Server(models.Model):
@@ -34,8 +33,4 @@ class ServerForm(forms.ModelForm):
 
     class Meta:
         model = Server
-
-class ServerAdmin(admin.ModelAdmin):
-    form = ServerForm
-
 
