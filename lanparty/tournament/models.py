@@ -65,6 +65,21 @@ class TeamMembership(models.Model):
         super(TeamMembership, self).save(*args, **kwargs)
         self.team.save()
 
+class Round(models.Model):
+    tournament = models.ForeignKey(Tournament)
+    number = models.IntegerField()
+
+class Match(models.Model):
+    round = models.ForeignKey(Round)
+    teams = models.ManyToManyField(Team, through='TeamMatch')
+    completed = models.BooleanField()
+
+class TeamMatch(models.Model):
+    match = models.ForeignKey(Match)
+    team = models.ForeignKey(Team)
+    has_won = models.BooleanField()
+    
+
 class TournamentForm(forms.ModelForm):
     teams_paid = forms.CharField(required=False, widget=forms.TextInput(attrs={'disabled': 'disabled'}))
 
